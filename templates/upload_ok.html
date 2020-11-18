@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <body background="{{ url_for('static', filename='Overlay_Versionv4.jpg'  ) }}"   >
+
+    <!--
+    <link rel="stylesheet" href="{{ url_for('static', filename='Overlay_Version.png') }}">
+-->
+    <title>Text Summarization Tool</title>
+</head>
+<body>
+
+
+    <h1 style="color:white;font-size:60px;">Summary of the text</h1>
+    <form action="" enctype='multipart/form-data' method='POST'>
+        <p style="color:white;"><input type="file" name="file" style="margin-top:20px;"/></p>  <input type="submit" value="Continue to Upload" class="button-new" style="margin-top:15px;"/>
+        <br>
+        <i style="color:white;font-size:20px;">Please enter your decision (Approve or Decline)：</i>
+        <input type="text" class="txt_input" name="name"   style="margin-top:10px;"/>    <!-- value="超超开心" -->
+        <input type="submit" value="Submit" class="button-new" style="margin-top:15px;"/>
+    </form>
+    <br>
+    {% if summary_output1 %}
+    <p style="color:white;font-size:25px;"><b> The summary of the text from the uploaded image is:</b>{{summary_output1}}</p>
+    {% else %}
+    <p style="color:white;font-size:25px;">The summary of the text will be displayed here</p>
+    {% endif %}
+
+    <br>
+    <div style="width: 100%;">
+        <div style="width: 50%; height: 200px; ">  <!-- float: left;-->
+          <p style="color:white;"><img src="/static/images/{{file_name}}" alt = "Anthem" /></p>
+        </div>
+        {% if extracted_text %}
+        <div style="margin-left: 40%; height: 300px;  ">
+          <p style="color:white;font-size:25px;margin-top:2px; left:20px;"><b> The extracted text from the image above is:</b>{{extracted_text}}</p>
+          {% else %}
+          <p style="color:white;font-size:25px;">The extracted text will be displayed here</p>
+
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
